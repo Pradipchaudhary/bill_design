@@ -200,7 +200,7 @@ body{
     .printBill .header .title div{
         line-height: 1.1;
     }
-    .printBill .header .title ,_copy{
+    .printBill .header .title #copy{
         font-weight: 700;
         font-size: 1rem;
         margin-top: 5px;
