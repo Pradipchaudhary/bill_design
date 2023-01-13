@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background-color: #7e5ca5;
+  padding: 30px 10%;
+}
+
+/* .container{
+        width: 70%;
+        margin: auto;
+    } */
+.printBtn {
+  background: #44a4e0;
+  color: #fff;
+  border: 1px solid #44a4e0;
+  padding: 4px 10px;
+  margin: 10px 0;
+}
+.printBill {
+  /* width: 1034px; */
+  /* height: 1463px; */
+  border: 2px solid #777;
+  padding: 15px;
+  background-color: #fff;
+  /* background: #eee; */
+}
+
+/* === Header === */
+.printBill .header {
+  position: relative;
+  /* border-bottom: 1px dotted #777; */
+  padding-bottom: 20px;
+}
+.printBill .header .title {
+  text-align: center;
+}
+.printBill .header .title h2 {
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+.printBill .header .title div {
+  margin: 0;
+  padding: 0;
+}
+.printBill .header .logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.printBill .header .logo img {
+  width: 70px;
+  max-width: 100px;
+}
+.printBill .header .bill_date {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* === Student Detail === */
+.printBill .content .student_detail {
+  padding: 6px 0 0;
+  display: flex;
+  font-weight: bold;
+}
+.printBill .content .student_detail .student_program {
+  margin-left: 10%;
+}
+.printBill .content .student_detail .student_name span,
+.printBill .content .student_detail .student_program span {
+  text-transform: uppercase;
+  border-bottom: 1px dashed #777;
+  margin-left: 2px;
+  font-weight: normal;
+}
+
+/* === Table === */
+.printBill .content table {
+  width: 100%;
+  margin: 5px 0;
+}
+.printBill .content table tr:first-child td {
+  font-weight: bold;
+}
+
+.printBill .content table td {
+  border: 1px solid #000;
+  padding: 2px 5px;
+  vertical-align: top;
+  text-align: left;
+}
+.printBill .content table td.sn {
+  width: 10px;
+}
+.printBill .content table td table td {
+  border: none;
+}
+.printBill .content table td table {
+  margin-left: 10px;
+}
+.printBill .content table table tr:first-child td {
+  font-weight: normal;
+}
+
+.printBill .total_amount {
+  display: flex;
+  justify-content: space-between;
+}
+
+.printBill .total_amount .in_word {
+  width: 85%;
+}
+
+.printBill .total_amount .in_word ._word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.printBill .total_amount .amount_detail {
+  display: flex;
+  justify-content: flex-end;
+}
+.printBill .total_amount .amount_detail table {
+  width: auto;
+}
+
+.printBill .total_amount .amount_detail table td {
+  border: none;
+}
+.printBill .total_amount .amount_detail table td:last-child {
+  text-align: right;
+}
+.printBill .total_amount .amount_detail table tr:first-child td {
+  font-weight: normal;
+}
+
+.printBill .received_by {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+/* === Print CSS */
+@media print {
+  @page {
+    size: A4 landscape;
+  }
+  #print-parent-div {
+    justify-content: space-between;
+    display: flex;
+  }
+  #divider-div {
+    border: 0.1px dotted #000 !important;
+    height: 100vh;
+  }
+  .printBill * {
+    visibility: visible;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.75rem;
+  }
+  .printBill {
+    width: 48%;
+    padding: 0px;
+    border: 1px solid #000 !important;
+    padding: 5px;
+    position: relative;
+    /* position: absolute; */
+    top: 0;
+  }
+
+  /* === header === */
+  .printBill .header {
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .printBill .header .title h2 {
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+  }
+  .printBill .header .title div {
+    line-height: 1.1;
+  }
+  .printBill .header .title #copy {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  .printBill .header .logo {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+  }
+
+  .printBill .header .bill_date {
+    position: absolute;
+    right: 0px;
+    top: 25px;
+    text-align: right;
+    line-height: 1.1;
+  }
+  /* .printBill .content table td{
+            font-size: .6rem !important;
+        } */
+  .printBill .total_amount .amount_detail {
+    width: 35%;
+  }
+  .printBill .total_amount .amount_detail table {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.4rem;
+  }
+  .printBill .total_amount .amount_detail table td {
+    padding: 0px;
+    padding: 0px;
+  }
+  .printBill .total_amount .in_word {
+    width: 85%;
+    padding-right: 30px;
+  }
+  .printBill .total_amount ._remark,
+  .printBill .total_amount ._word {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .printBill .total_amount ._word {
+    margin-top: 30px;
+  }
+  .printBill .received_by {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+  }
+}
