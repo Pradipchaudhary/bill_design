@@ -5,14 +5,10 @@
 }
 body {
   font-family: sans-serif;
-  background-color: #7e5ca5;
+  background-color: #ffffff;
   padding: 30px 10%;
 }
 
-/* .container{
-    width: 70%;
-    margin: auto;
-} */
 .printBtn {
   background: #44a4e0;
   color: #fff;
@@ -21,12 +17,9 @@ body {
   margin: 10px 0;
 }
 .printBill {
-  /* width: 1034px; */
-  /* height: 1463px; */
-  border: 2px solid #777;
+  border: 2px solid #dedede;
   padding: 15px;
   background-color: #fff;
-  /* background: #eee; */
 }
 
 /* === Header === */
