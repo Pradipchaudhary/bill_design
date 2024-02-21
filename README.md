@@ -130,25 +130,25 @@ In programming, data types define the type of data that a variable can hold. Dif
 
 -  **[Float (Floating-point number)](#float)** :- Represents real numbers with a fractional part, such as 3.14, -0.001, 2.71828, etc.
 
-3. **Double**: Similar to float but with double precision. It can hold larger numbers with more decimal places.
+-  **[Double](#double)** :- Similar to float but with double precision. It can hold larger numbers with more decimal places.
 
-4. **Boolean**: Represents a binary value, either true or false.
+-  **[Boolean](#boolean)** :- Represents a binary value, either true or false.
 
-5. **Character (char)**: Represents a single character, such as 'a', 'Z', '@', etc.
+-  **[Character (char)](character)** :- Represents a single character, such as 'a', 'Z', '@', etc.
 
-6. **String**: Represents a sequence of characters, such as "hello", "world", "123", etc.
+-  **[String](#string)** :- Represents a sequence of characters, such as "hello", "world", "123", etc.
 
-7. **Array**: Represents a collection of elements of the same data type stored in contiguous memory locations.
+-  **[Array](#array)**: Represents a collection of elements of the same data type stored in contiguous memory locations.
 
-8. **Struct/Record**: Represents a collection of different data types grouped together under one name.
+-  **[Struct/Record](struct-record)**: Represents a collection of different data types grouped together under one name.
 
-9. **Pointer**: Stores the memory address of another variable.
+-  **[Pointer](#pointer)**: Stores the memory address of another variable.
 
-10.   **Enumeration (enum)**: Represents a set of named integer constants.
+-  **[Enumeration (enum)](#enumeration)**: Represents a set of named integer constants.
 
-11.   **Void**: Represents the absence of a data type or as a placeholder for a function that returns nothing.
+   **[Void](#void)**: Represents the absence of a data type or as a placeholder for a function that returns nothing.
 
-12.   **User-defined types**: Some programming languages allow developers to create their own custom data types.
+   **[User-defined types](#user-defined-types)**: Some programming languages allow developers to create their own custom data types.
 
 These are just some of the common data types found in programming languages, and different languages may have additional or specialized data types tailored to their specific needs. Understanding data types is crucial for writing efficient and bug-free code.
 
