@@ -122,6 +122,36 @@ int main() {
 }
 ```
 
+## [3. Data type and structures](#3-data-type-and-structures)
+
+In programming, data types define the type of data that a variable can hold. Different programming languages support various data types, but some common ones include:
+
+-  **[Integer](#integer)** :- Represents whole numbers without any fractional part, such as 1, 100, -5, etc.
+
+-  **[Float (Floating-point number)](#float)** :- Represents real numbers with a fractional part, such as 3.14, -0.001, 2.71828, etc.
+
+3. **Double**: Similar to float but with double precision. It can hold larger numbers with more decimal places.
+
+4. **Boolean**: Represents a binary value, either true or false.
+
+5. **Character (char)**: Represents a single character, such as 'a', 'Z', '@', etc.
+
+6. **String**: Represents a sequence of characters, such as "hello", "world", "123", etc.
+
+7. **Array**: Represents a collection of elements of the same data type stored in contiguous memory locations.
+
+8. **Struct/Record**: Represents a collection of different data types grouped together under one name.
+
+9. **Pointer**: Stores the memory address of another variable.
+
+10.   **Enumeration (enum)**: Represents a set of named integer constants.
+
+11.   **Void**: Represents the absence of a data type or as a placeholder for a function that returns nothing.
+
+12.   **User-defined types**: Some programming languages allow developers to create their own custom data types.
+
+These are just some of the common data types found in programming languages, and different languages may have additional or specialized data types tailored to their specific needs. Understanding data types is crucial for writing efficient and bug-free code.
+
 <!-- Variable declaration
 Basic syntax
 Data type and structures
