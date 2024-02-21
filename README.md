@@ -11,7 +11,7 @@ Programming fundamentals form the cornerstone of computer programming, providing
 -  **[Variable Declaration]()**
 -  **[Basic Syntax]()**
 
-## [1. Variable Declaration](#variable-declaration)
+## [1. Variable Declaration](#1-variable-declaration)
 
 Variables are containers for storing data values, a memory location for a data type. Variables are created using a declaration or keyword that varies across languages.
 
@@ -78,6 +78,49 @@ is_student = true
 ```
 
 These examples showcase variable declarations in Python, JavaScript, Java, C++, and Ruby. Note that each language may have different syntax and conventions for declaring variables, but the fundamental concept remains consistent across these examples.
+
+## [2. Basic Syntax ](#2-basic-syntax)
+
+Every programming language has its syntax, and you must learn the fundamental syntax of the language you are learning.
+
+Syntax refers to the set of rules that define the structure of a language. It is almost impossible to read or understand a programming language without its syntax.
+
+For example, let us declare a variable named greet and assign the value “Hello World” to it:
+
+> Examples:
+
+### 1. **Python:**
+
+```python
+greet = "Hello World";
+```
+
+### 2. **JavaScript:**
+
+```javascript
+let greet = "Hello World";
+```
+
+### 3. **Java:**
+
+```java
+String greet = "Hello World";
+```
+
+### 4. **C++:**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+  // your code goes here
+  string greet;
+  greet = "Hello World";
+  cout << greet;
+  return 0;
+}
+```
 
 <!-- Variable declaration
 Basic syntax
