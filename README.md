@@ -11,7 +11,7 @@ Programming fundamentals form the cornerstone of computer programming, providing
 -  **[Variable Declaration]()**
 -  **[Basic Syntax]()**
 
-## [Variable Declaration](#variable-declaration)
+## [1. Variable Declaration](#variable-declaration)
 
 Variables are containers for storing data values, a memory location for a data type. Variables are created using a declaration or keyword that varies across languages.
 
