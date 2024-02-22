@@ -126,29 +126,117 @@ int main() {
 
 In programming, data types define the type of data that a variable can hold. Different programming languages support various data types, but some common ones include:
 
--  **[Integer](#integer)** :- Represents whole numbers without any fractional part, such as 1, 100, -5, etc.
+### Integer
 
--  **[Float (Floating-point number)](#float)** :- Represents real numbers with a fractional part, such as 3.14, -0.001, 2.71828, etc.
+-  **Definition:** Represents whole numbers without any fractional part.
+-  **Examples:** 1, 100, -5, etc.
+-  **Usage:**
+   -  **C/C++:** `int num = 5;`
+   -  **Java:** `int num = 5;`
+   -  **Python:** `num = 5`
+   -  **JavaScript:** `let num = 5;`
 
--  **[Double](#double)** :- Similar to float but with double precision. It can hold larger numbers with more decimal places.
+### Float (Floating-point number)
 
--  **[Boolean](#boolean)** :- Represents a binary value, either true or false.
+-  **Definition:** Represents real numbers with a fractional part.
+-  **Examples:** 3.14, -0.001, 2.71828, etc.
+-  **Usage:**
+   -  **C/C++:** `float num = 3.14;`
+   -  **Java:** `float num = 3.14;`
+   -  **Python:** `num = 3.14`
+   -  **JavaScript:** `let num = 3.14;`
 
--  **[Character (char)](character)** :- Represents a single character, such as 'a', 'Z', '@', etc.
+### Double
 
--  **[String](#string)** :- Represents a sequence of characters, such as "hello", "world", "123", etc.
+-  **Definition:** Similar to float but with double precision. It can hold larger numbers with more decimal places.
+-  **Usage:**
+   -  **C/C++:** `double num = 3.14159265359;`
+   -  **Java:** `double num = 3.14159265359;`
+   -  **Python:** `num = 3.14159265359`
+   -  **JavaScript:** Not explicitly specified; the language uses the `number` type for floating-point numbers.
 
--  **[Array](#array)**: Represents a collection of elements of the same data type stored in contiguous memory locations.
+### Boolean
 
--  **[Struct/Record](struct-record)**: Represents a collection of different data types grouped together under one name.
+-  **Definition:** Represents a binary value, either true or false.
+-  **Usage:**
+   -  **C/C++:** `bool flag = true;`
+   -  **Java:** `boolean flag = true;`
+   -  **Python:** `flag = True`
+   -  **JavaScript:** `let flag = true;`
 
--  **[Pointer](#pointer)**: Stores the memory address of another variable.
+### Character (char)
 
--  **[Enumeration (enum)](#enumeration)**: Represents a set of named integer constants.
+-  **Definition:** Represents a single character.
+-  **Examples:** 'a', 'Z', '@', etc.
+-  **Usage:**
+   -  **C/C++:** `char ch = 'A';`
+   -  **Java:** `char ch = 'A';`
+   -  **Python:** `ch = 'A'`
+   -  **JavaScript:** `let ch = 'A';`
 
-   **[Void](#void)**: Represents the absence of a data type or as a placeholder for a function that returns nothing.
+### String
 
-   **[User-defined types](#user-defined-types)**: Some programming languages allow developers to create their own custom data types.
+-  **Definition:** Represents a sequence of characters.
+-  **Examples:** "hello", "world", "123", etc.
+-  **Usage:**
+   -  **C/C++:** `std::string str = "Hello";`
+   -  **Java:** `String str = "Hello";`
+   -  **Python:** `str = "Hello"`
+   -  **JavaScript:** `let str = "Hello";`
+
+### Array
+
+-  **Definition:** Represents a collection of elements of the same data type stored in contiguous memory locations.
+-  **Usage:**
+   -  **C/C++:** `int arr[5] = {1, 2, 3, 4, 5};`
+   -  **Java:** `int[] arr = {1, 2, 3, 4, 5};`
+   -  **Python:** `arr = [1, 2, 3, 4, 5]`
+   -  **JavaScript:** `let arr = [1, 2, 3, 4, 5];`
+
+### Struct/Record
+
+-  **Definition:** Represents a collection of different data types grouped together under one name.
+-  **Usage:**
+   -  **C/C++:** `struct Person { char name[50]; int age; };`
+   -  **Java:** `class Person { String name; int age; }`
+   -  **Python:** `class Person: def __init__(self, name, age): self.name = name self.age = age`
+   -  **JavaScript:** Often achieved using objects.
+
+### Pointer
+
+-  **Definition:** Stores the memory address of another variable.
+-  **Usage:**
+   -  **C/C++:** `int* ptr = &num;`
+   -  **Java:** No explicit pointers, but references can be used.
+   -  **Python:** No explicit pointers.
+   -  **JavaScript:** No explicit pointers.
+
+### Enumeration (enum)
+
+-  **Definition:** Represents a set of named integer constants.
+-  **Usage:**
+   -  **C/C++:** `enum Days { MON, TUE, WED, THU, FRI, SAT, SUN };`
+   -  **Java:** `enum Days { MON, TUE, WED, THU, FRI, SAT, SUN };`
+   -  **Python:** No direct equivalent, but you can use constants or a class.
+   -  **JavaScript:** No direct equivalent.
+
+### Void
+
+-  **Definition:** Represents the absence of a data type or as a placeholder for a function that returns nothing.
+-  **Usage:**
+   -  **C/C++:** `void function() { /* do something */ }`
+   -  **Java:** `void function() { /* do something */ }`
+   -  **Python:** No explicit `void`.
+   -  **JavaScript:** `function myFunction() { /* no return */ }`
+
+### User defined types
+
+-  **Definition :** Some programming languages allow developers to create their own custom data types.
+-  **Usage:**
+   -  **C/C++:** `/* do something */ `
+   -  **Java:** `/* do something */ `
+   -  **Python:** `/* do something */ `.
+   -  **JavaScript:** `/* do something */ `
 
 These are just some of the common data types found in programming languages, and different languages may have additional or specialized data types tailored to their specific needs. Understanding data types is crucial for writing efficient and bug-free code.
 
