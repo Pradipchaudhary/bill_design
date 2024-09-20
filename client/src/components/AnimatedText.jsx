@@ -2,8 +2,9 @@
 
 import React, { useRef, useEffect, useState } from "react";
 
-const AnimatedText = () => {
+const AnimatedText = ({ text, animationStyle, duration, onFramesCaptured }) => {
     const canvasRef = useRef(null);
+    const [isAnimating, setIsAnimating] = useState(false);
     const [frameIndex, setFrameIndex] = useState(0);
 
     useEffect(() => {
@@ -13,18 +14,26 @@ const AnimatedText = () => {
         let xPos = 0;
 
         const draw = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.font = "48px sans-serif";
             ctx.fillStyle = "blue";
-            ctx.fillText("Hello World!", xPos, 100); // Draw text
-            xPos += 2; // Move text to the right
 
-            if (xPos > canvas.width) {
-                xPos = -200; // Reset position if text goes out of canvas
+            // Apply animation styles
+            if (animationStyle === "slide") {
+                ctx.fillText(text, xPos, 100);
+                xPos += 2; // Move text
+                if (xPos > canvas.width) xPos = -200; // Reset position
+            } else if (animationStyle === "fade") {
+                ctx.globalAlpha =
+                    0.5 + Math.sin((frameIndex / duration) * Math.PI) * 0.5;
+                ctx.fillText(
+                    text,
+                    canvas.width / 2 - ctx.measureText(text).width / 2,
+                    100
+                );
             }
 
-            // Capture frame and send it to server
-            if (frameIndex < 300) {
+            if (isAnimating && frameIndex < duration) {
                 captureFrame(canvas, frameIndex);
                 setFrameIndex((prev) => prev + 1);
             }
@@ -32,26 +41,32 @@ const AnimatedText = () => {
             animationFrameId = requestAnimationFrame(draw);
         };
 
-        draw(); // Start animation
+        draw();
 
-        return () => cancelAnimationFrame(animationFrameId); // Cleanup
-    }, [frameIndex]);
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [isAnimating, frameIndex, text, animationStyle, duration]);
 
     const captureFrame = (canvas, index) => {
         const frame = canvas.toDataURL("image/png");
-        fetch("http://localhost:5000/frame", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ frame, index }),
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.error("Error:", error));
+        onFramesCaptured(frame, index); // Callback to parent
     };
 
-    return <canvas ref={canvasRef} width={800} height={200} />;
+    const startAnimation = () => {
+        setIsAnimating(true);
+        setFrameIndex(0);
+    };
+
+    return (
+        <div>
+            <canvas
+                ref={canvasRef}
+                width={800}
+                height={200}
+                style={{ border: "1px solid black" }}
+            />
+            <button onClick={startAnimation}>Start Animation</button>
+        </div>
+    );
 };
 
 export default AnimatedText;
