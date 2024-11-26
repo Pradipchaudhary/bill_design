@@ -1,4 +1,5 @@
 "use client";
+
 import { db } from "@/lib/db";
 import { Users } from "@/lib/schema";
 import { useUser } from "@clerk/nextjs";
@@ -9,8 +10,12 @@ const Provider = ({ children }) => {
     const { user } = useUser();
 
     useEffect(() => {
-        console.log(user);
-        user && isNewUser();
+        const checkUser = async () => {
+            if (user) {
+                await isNewUser();
+            }
+        };
+        checkUser();
     }, [user]);
 
     const isNewUser = async () => {
@@ -18,16 +23,20 @@ const Provider = ({ children }) => {
             .select()
             .from(Users)
             .where(eq(Users.email, user?.primaryEmailAddress?.emailAddress));
+
         console.log(result);
 
         if (!result[0]) {
-            await db.insert(Users).values({
-                name: user.fullName,
-                email: user.primaryEmailAddress.emailAddress,
-                imageUrl: user.imageUrl,
-                createdAt: user.createdAt,
-                updatedAt: user.updatedAt,
-            });
+            await db
+                .insert(Users)
+                .values({
+                    name: user?.fullName ?? "",
+                    email: user?.primaryEmailAddress?.emailAddress ?? "",
+                    imageUrl: user?.imageUrl ?? "",
+                    createdAt: user?.createdAt ?? new Date().toISOString(),
+                    updatedAt: user?.updatedAt ?? new Date().toISOString(),
+                })
+                .returning(); // Optional: depending on your database setup
         }
     };
 
