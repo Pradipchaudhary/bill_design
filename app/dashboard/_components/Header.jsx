@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
 
 const Header = () => {
@@ -9,7 +10,9 @@ const Header = () => {
                 <h1>Canvas Video app </h1>
             </div>
             <div className="flex gap-3 items-center">
-                <Button>Dashboard</Button>
+                <Link href={"/dashboard"}>
+                    <Button>Dashboard</Button>
+                </Link>
                 <UserButton />
             </div>
         </div>
