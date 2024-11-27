@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
-import { Italic } from "lucide-react";
 
 const SelectStyle = ({ onUserSelect }) => {
+    const [selectedOption, setSelectedOption] = useState();
+
     const videoStyles = [
         {
             id: 1,
@@ -52,8 +53,6 @@ const SelectStyle = ({ onUserSelect }) => {
         },
     ];
 
-    const [selectedOption, setSelectedOption] = useState();
-    console.log(selectedOption);
     return (
         <div className="py-4">
             <h2 className="font-bold text-2xl text-primary">Style</h2>

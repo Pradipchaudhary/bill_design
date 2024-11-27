@@ -8,11 +8,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 
 const SelectTopic = ({ onUserSelect }) => {
     const [selectedOption, setSelectedOption] = useState();
-    console.log(selectedOption);
 
     return (
         <div className="py-4">
@@ -22,6 +20,7 @@ const SelectTopic = ({ onUserSelect }) => {
                 className="p-2"
                 onValueChange={(value) => {
                     setSelectedOption(value);
+                    value != "Custom prompt" && onUserSelect("duration", value);
                 }}
             >
                 <SelectTrigger className="w-[380px] pt-2 text-lg">
