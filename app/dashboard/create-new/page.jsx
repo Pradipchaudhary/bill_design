@@ -17,6 +17,7 @@ const CreateNew = () => {
     const [videoScript, setVideoScript] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [audioFileUrl, setAudioFileUrl] = useState();
 
     const onHandleInputChange = (fieldName, fieldValue) => {
         setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -72,13 +73,13 @@ const CreateNew = () => {
                 id: id,
             });
 
-            console.log("after post req result are: response ", response);
             // Handle the server response
 
-            const audioUrl = response.data?.audioUrl;
+            const audioUrl = response.data?.fileUrl;
             if (response.status === 200 && audioUrl) {
                 console.log("Audio file URL:", audioUrl);
                 // You can handle the audio file URL here (e.g., play or download it)
+                setAudioFileUrl(audioUrl);
             } else {
                 throw new Error(
                     response.data?.error || "Failed to generate audio."
