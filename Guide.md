@@ -8,3 +8,6 @@
 -   install [drizzle ORM](https://orm.drizzle.team/)
 -   add auth using [clerk](https://clerk.com/)
 -   icon use [Lucide](https://lucide.dev/)
+-   Generate Video Script using GEMINI
+-   Generate Audio file using [Eleven labs](https://elevenlabs.io/)
+-   Save Audio file in Firebase
