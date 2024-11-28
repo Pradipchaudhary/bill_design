@@ -6,7 +6,22 @@ import SelectDuration from "./_components/SelectDuration";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import CustomLoading from "./_components/CustomLoading";
-import { v4 as uuid } from "uuid"; // Import UUID
+import { v4 as uuid } from "uuid";
+
+const videoScriptList = [
+    {
+        imagePrompt:
+            "Realistic image of a bustling medieval marketplace, cobblestone streets, people in period clothing bargaining, vibrant colors, detailed architecture, bright sunlight",
+        contentText:
+            "Our story begins in 14th century Florence, a city brimming with life and ambition. The Renaissance was just dawning, and alongside the art and philosophy, a fierce rivalry was brewing...",
+    },
+    {
+        imagePrompt:
+            "Realistic portrait of a young, ambitious, determined-looking man in 14th-century Florentine clothing, holding a quill and parchment, intense gaze, high-quality details, cinematic lighting",
+        contentText:
+            "Meet Giovanni di Francesco, a promising young merchant with a keen eye for opportunity and a thirst for wealth. He had a secret plan...",
+    },
+];
 
 const CreateNew = () => {
     const [formData, setFormData] = useState({
@@ -17,8 +32,9 @@ const CreateNew = () => {
     const [videoScript, setVideoScript] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [audioFileUrl, setAudioFileUrl] = useState();
-    const [caption, setCaption] = useState();
+    const [audioFileUrl, setAudioFileUrl] = useState(null);
+    const [caption, setCaption] = useState(null);
+    const [imageList, setImageList] = useState([]);
 
     const onHandleInputChange = (fieldName, fieldValue) => {
         setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -31,14 +47,14 @@ const CreateNew = () => {
 
         try {
             const result = await axios.post("/api/get-video-script", {
-                prompt: prompt,
+                prompt,
             });
-
-            // Validate response structure
             const resultData = result.data?.result;
+
             if (resultData && Array.isArray(resultData)) {
                 setVideoScript(resultData);
-                GenerateAudioFile(resultData);
+                await GenerateAudioFile(resultData);
+                // await GenerateImages(resultData);
             } else {
                 throw new Error(
                     "Unexpected response structure from the server."
@@ -55,63 +71,85 @@ const CreateNew = () => {
         }
     };
 
-    const GenerateAudioFile = async (videScriptData) => {
+    const GenerateAudioFile = async (videoScriptData) => {
         try {
-            setLoading(true); // Show loading state
+            setLoading(true);
+            const id = uuid();
+            const script = videoScriptData
+                .map((item) => item.contentText || "")
+                .join(" ");
 
-            const id = uuid(); // Generate unique request ID
-
-            // Concatenate contentText if videScriptData is an array of objects
-            const script = Array.isArray(videScriptData)
-                ? videScriptData.map((item) => item.contentText || "").join(" ")
-                : videScriptData; // Assume string if not an array
-
-            console.log("Script are here...before post request:", script);
-            // Script are here...before post request
-            // Make POST request to generate audio
             const response = await axios.post("/api/generate-audio", {
                 text: script,
-                id: id,
+                id,
             });
-
-            // Handle the server response
-
+            console.log("Generate Audio file : ", response);
             const audioUrl = response.data?.fileUrl;
             if (response.status === 200 && audioUrl) {
-                console.log("Audio file URL:", audioUrl);
-                // You can handle the audio file URL here (e.g., play or download it)
                 setAudioFileUrl(audioUrl);
-                GenerateAudioCaption(audioUrl);
+                // await GenerateAudioCaption(audioUrl);
             } else {
-                throw new Error(
-                    response.data?.error || "Failed to generate audio."
-                );
+                throw new Error("Failed to generate audio.");
             }
         } catch (error) {
-            console.error(
-                "Error generating audio file:",
+            console.error("Error generating audio file:", error);
+            setError(
                 error.response?.data?.error ||
-                    error.message ||
-                    "Unknown error occurred."
+                    "There was an issue generating the audio file."
             );
         } finally {
-            setLoading(false); // Clear the loading state
+            setLoading(false);
         }
     };
 
     const GenerateAudioCaption = async (fileUrl) => {
-        setLoading(true);
-
-        axios
-            .post("/api/generate-caption", {
+        try {
+            setLoading(true);
+            const response = await axios.post("/api/generate-caption", {
                 audioFileUrl: fileUrl,
-            })
-            .then((res) => {
-                console.log("caption res: ", res.data.data);
-                setCaption(res.data.data);
             });
+            console.log("Generate Audio Captiion:", response);
+            if (response.data?.data) {
+                setCaption(response.data.data);
+            } else {
+                throw new Error("Failed to generate captions.");
+            }
+        } catch (error) {
+            console.error("Error generating audio captions:", error);
+            setError("Failed to generate captions.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        setLoading(false);
+    const GenerateImages = async (videoScriptList) => {
+        try {
+            setLoading(true); // Indicate loading state
+            setError(null); // Clear any previous errors
+
+            const imagePromises = videoScriptList.map((element) =>
+                axios
+                    .post("/api/generate-image", {
+                        prompt: element.imagePrompt,
+                    })
+                    .then((res) => {
+                        if (res.data?.fileUrl) {
+                            return res.data.fileUrl;
+                        }
+                        throw new Error("No image URL found in response.");
+                    })
+            );
+
+            const images = await Promise.all(imagePromises);
+
+            console.log("Generated images:", images); // Debugging output
+            setImageList(images); // Update state with generated image URLs
+        } catch (error) {
+            console.error("Error generating images:", error);
+            setError("Failed to generate images. Please try again later.");
+        } finally {
+            setLoading(false); // End loading state
+        }
     };
 
     const onClickHandler = () => {
@@ -119,7 +157,7 @@ const CreateNew = () => {
             setError("Please select all fields before creating the video.");
             return;
         }
-        GetVideoScript();
+        GenerateImages(videoScriptList);
     };
 
     return (
