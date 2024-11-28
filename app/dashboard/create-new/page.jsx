@@ -18,6 +18,7 @@ const CreateNew = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [audioFileUrl, setAudioFileUrl] = useState();
+    const [caption, setCaption] = useState();
 
     const onHandleInputChange = (fieldName, fieldValue) => {
         setFormData((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -80,6 +81,7 @@ const CreateNew = () => {
                 console.log("Audio file URL:", audioUrl);
                 // You can handle the audio file URL here (e.g., play or download it)
                 setAudioFileUrl(audioUrl);
+                GenerateAudioCaption(audioUrl);
             } else {
                 throw new Error(
                     response.data?.error || "Failed to generate audio."
@@ -95,6 +97,21 @@ const CreateNew = () => {
         } finally {
             setLoading(false); // Clear the loading state
         }
+    };
+
+    const GenerateAudioCaption = async (fileUrl) => {
+        setLoading(true);
+
+        axios
+            .post("/api/generate-caption", {
+                audioFileUrl: fileUrl,
+            })
+            .then((res) => {
+                console.log("caption res: ", res.data.data);
+                setCaption(res.data.data);
+            });
+
+        setLoading(false);
     };
 
     const onClickHandler = () => {

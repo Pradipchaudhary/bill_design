@@ -10,4 +10,5 @@
 -   icon use [Lucide](https://lucide.dev/)
 -   Generate Video Script using GEMINI
 -   Generate Audio file using [Eleven labs](https://elevenlabs.io/)
--   Save Audio file in Firebase
+-   Save Audio file in [Cloudinary](https://console.cloudinary.com/)
+-   Generate Caption
