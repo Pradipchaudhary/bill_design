@@ -33,7 +33,7 @@ export async function POST(req) {
         const cloudinaryResponse = await new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
                 {
-                    folder: "canvas-video-app-audio", // Folder where audio files will be stored
+                    folder: "canvas-video-app", // Folder where audio files will be stored
                     resource_type: "auto", // Automatically detect file type
                     public_id: `audio_files/${fileName}`, // Specify a public ID for the file
                 },
